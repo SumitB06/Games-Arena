@@ -1,18 +1,18 @@
 <div>
   <main class="container-fluid">
     <app-container-view [gamesList]="gamesList" [loadingComplete]="dataReceived"></app-container-view>
-    <div class="row">
+    <div class="row form-inline">
       <div class="col-12 col-md-4">
         <span>Search title: </span>
-        <input type="text" [(ngModel)]="titleSearched" (keyup.enter)="filterByTitle()"/>
+        <input type="text" [(ngModel)]="titleSearched" (keyup.enter)="filterByTitle()" class="form-control"/>
       </div>
       <div class="col-12 col-md-4">
         <span>Show per page: </span>
-        <input type="number" [(ngModel)]="shownPerPage" (change)="updateGamesList()"/>
+        <input type="number" [(ngModel)]="shownPerPage" (change)="updateGamesList()" class="form-control"/>
       </div>
       <div class="col-12 col-md-4">
         <span>Displaying </span>
-        <input type="number" [(ngModel)]="page" (change)="updateGamesList()"/>
+        <input type="number" [(ngModel)]="page" (change)="updateGamesList()" class="form-control page-number"/>
         <span> of {{maxPages}} pages</span>
       </div>
     </div>
