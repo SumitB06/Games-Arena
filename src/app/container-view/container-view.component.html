@@ -1,0 +1,7 @@
+<div>
+  <ul *ngIf="loadingComplete">
+    <li *ngFor="let gameData of gamesList">
+      <app-game-details-view [gameDetails]="gameData"></app-game-details-view>
+    </li>
+  </ul>
+</div>

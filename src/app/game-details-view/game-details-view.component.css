@@ -1,0 +1,17 @@
+span.editors_choice {
+    font-size: .7rem;
+    border-radius: 10px;
+    background-color: #3bff00;
+    padding: 0 5px;
+    margin: 0 10px;
+}
+
+span.editors_choice > i {
+    padding-right: 3px;
+}
+
+.title-container {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}

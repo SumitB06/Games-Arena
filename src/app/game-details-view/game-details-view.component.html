@@ -1,0 +1,23 @@
+<article class="container-fluid">
+  <div class="row title-container">
+    <div class="col-12 col-lg-8">
+      <a href={{gameDetails.url}}>{{gameDetails.title}}</a>
+      <span class="editors_choice" *ngIf="gameDetails.editors_choice === 'Y'"><i class="fas fa-certificate"></i>Editor's Choice</span>
+    </div>
+    <div class="col-12 col-lg-4">
+      <span>Rating: </span>
+      <app-star-ratings [starValue]="gameDetails.score"></app-star-ratings>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <span>Platform</span>: <span><em>{{gameDetails.platform}}</em></span>
+    </div>
+    <div class="col">
+      <span>Genre</span>: <span><em>{{gameDetails.genre}}</em></span>
+    </div>
+    <div class="col">
+      <span>Release year</span>: <span><em>{{gameDetails.release_year}}</em></span>
+    </div>
+  </div>
+</article>
