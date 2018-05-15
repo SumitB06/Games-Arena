@@ -3,3 +3,18 @@ h2 {
     letter-spacing: 3px;
     word-spacing: 10px;
 }
+
+input[type="text"] {
+    position: relative;
+}
+
+i {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    opacity: 0.3;
+    transition: opacity 1s;
+}
+i:hover {
+    opacity: 0.9;
+}
