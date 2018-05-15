@@ -1,0 +1,18 @@
+<div>
+  <div class="container-fluid">
+    <div class="row form-inline">
+      <div class="col-6 col-md-3" (click)="showFilters('platform')" [ngClass]="{ 'selected': filterKey === 'platform' }">
+        <span>Platform</span>
+      </div>
+      <div class="col-6 col-md-3" (click)="showFilters('genre')" [ngClass]="{ 'selected': filterKey === 'genre' }"genre>
+        <span>Genre</span>
+      </div>
+      <div class="col-6 col-md-3" (click)="showFilters('year')" [ngClass]="{ 'selected': filterKey === 'year' }">
+        <span>Release year range</span>
+      </div>
+      <div class="col-6 col-md-3" (click)="showFilters('ratings')" [ngClass]="{ 'selected': filterKey === 'ratings' }"ratings>
+        <span>Ratings range</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row form-group">
+    <div class="col-12 col-md-6">
+      <label for="yearFrom">From year</label>
+      <input type="number" class="form-control" id="yearFrom" placeholder="From" #fromYear
+            [value]="releaseYearsRange[0]" [min]="releaseYearsRange[0]" [max]="releaseYearsRange[1]" />
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="yearTo">To year</label>
+      <input type="number" class="form-control" id="yearTo" placeholder="To" #toYear
+            [value]="releaseYearsRange[1]" [min]="releaseYearsRange[0]" [max]="releaseYearsRange[1]" />
+    </div>
+  </div>
+  <div class="row form-group justify-content-around">
+    <div class="col-6 col-md-3">
+      <button type="button" class="btn btn-block btn-primary">Search</button>
+    </div>
+    <div class="col-6 col-md-3">
+      <button type="button" class="btn btn-block btn-light">Reset</button>
+    </div>
+  </div>
+</div>

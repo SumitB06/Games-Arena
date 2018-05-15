@@ -1,0 +1,15 @@
+div.col-6.col-md-3 {
+    padding-top: 5px;
+    padding-bottom: 8px;
+    text-align: center;
+    border-right: 1px solid #555;
+    cursor: pointer;
+}
+
+div.col-6.col-md-3:hover, div.col-6.col-md-3.selected {
+    background: linear-gradient(#333, #000, #444);
+}
+
+div.col-6.col-md-3:last-of-type {
+    border: none;
+}

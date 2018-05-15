@@ -9,6 +9,8 @@ import { HeaderViewComponent } from './header-view/header-view.component';
 import { ContainerViewComponent } from './container-view/container-view.component';
 import { GameDetailsViewComponent } from './game-details-view/game-details-view.component';
 import { StarRatingsComponent } from './star-ratings/star-ratings.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { YearRangeFilterComponent } from './year-range-filter/year-range-filter.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { StarRatingsComponent } from './star-ratings/star-ratings.component';
     HeaderViewComponent,
     ContainerViewComponent,
     GameDetailsViewComponent,
-    StarRatingsComponent
+    StarRatingsComponent,
+    NavMenuComponent,
+    YearRangeFilterComponent
   ],
   imports: [
     BrowserModule,
