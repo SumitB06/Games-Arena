@@ -12,78 +12,129 @@ export class AppComponent {
   allGamesList: any = [];
   maxPages: number = 1;
   gamesList: any = [];
-  titleSearched: string = '';
   page: number = 1;
   shownPerPage: number = 8;
   showOnlyEditorsChoices: boolean = false;
+  allGenresList: any = {};
+  allPlatformsList: any = {};
+  releaseYearsRange: number[] = [];
+  
+  filteredList: any[] = [];
   filteredResults: number = 0;
-  genreList: any = {};
-  releaseYearsRange: number[] = [9999, 0];
+  titleSearched: string = '';
+  filteredYears: number[] = [];
   filterKey: string = '';
+  filteredRating: number = 0;
+
 
   constructor(private gamesApiService: GamesListApiService) {}
 
   ngOnInit() {
     this.gamesApiService.retrieveGamesList().subscribe(res => {
       this.allGamesList = res.json();
-      this.maxPages = Math.ceil(this.allGamesList.length / this.shownPerPage);
       this.updateGamesList();
-      this.dataReceived = true;
+      
+      this.releaseYearsRange = this.filteredYears;
+      this.allGamesList.forEach(game => {
+        /* get unique genres list */
+        game.genre.split(', ').forEach(element => {
+          if (element.trim() === '') element = 'any';
+          this.allGenresList[element] = true;
+        });
+        /* get unique platforms list*/
+        this.allPlatformsList[game.platform] = true;
+      });
     });
-  }
-
-  filterByTitle() {
-    this.page = 1;
-    this.updateGamesList();
   }
 
   updateGamesList() {
-    const list = this.getFilteredList();
-
-    this.maxPages = Math.ceil(list.length / this.shownPerPage);
-    if (this.page > this.maxPages) this.page = 1;
-
-    this.gamesList = list.slice((this.page * this.shownPerPage) - this.shownPerPage, this.page * this.shownPerPage);
+    this.dataReceived = false;
+    this.filteredList = this.getFilteredList();
+    this.setCurrentDisplayedList();
     
-    this.setListFilters(list);
+    this.setListFilters();
+    this.dataReceived = true;
   }
 
-  setListFilters(list) {
+  setCurrentDisplayedList() {
+    this.maxPages = Math.ceil(this.filteredList.length / this.shownPerPage);
+    if (this.page > this.maxPages) this.page = 1;
+    this.gamesList = this.filteredList.slice((this.page * this.shownPerPage) - this.shownPerPage, this.page * this.shownPerPage);
+  }
+
+  setListFilters() {
     /* Set filter props based on current filtered list */
-    this.filteredResults = list.length;
+    this.filteredResults = this.filteredList.length;
 
-    list.forEach(game => {
-      const genres = game.genre.split(', ');
-      genres.forEach(element => {
-        if (element.trim() !== '') this.genreList[element] = true;
+    if (!this.filteredYears.length) this.filteredYears = [9999, 0];
+    // if (Object.keys(this.allGenresList).length) Object.keys(this.allGenresList).forEach(key => this.allGenresList[key] = false);
+    // if (Object.keys(this.allPlatformsList).length) Object.keys(this.allPlatformsList).forEach(key => this.allPlatformsList[key] = false);
+
+    if (this.filteredList.length) {
+      this.filteredList.forEach(game => {
+        /* game.genre.split(', ').forEach(element => {
+          if (element.trim() === '') element = 'any';
+          this.allGenresList[element] = true;
+        });
+        this.allPlatformsList[game.platform] = true; */
+        if (game.release_year < this.filteredYears[0]) this.filteredYears[0] = game.release_year;
+        if (game.release_year > this.filteredYears[1]) this.filteredYears[1] = game.release_year;
       });
-      
-      if (game.release_year < this.releaseYearsRange[0]) this.releaseYearsRange[0] = game.release_year;
-      if (game.release_year > this.releaseYearsRange[1]) this.releaseYearsRange[1] = game.release_year;
-    });
+    }
 
   }
 
+  /* Filter list based on ... */
   getFilteredList() {
-    /* Filter list based on searched title and editor's choice key */
+    /* ... searched title */ 
     let list = this.titleSearched.trim() === '' ? this.allGamesList : this.allGamesList.filter(game => game.title.toString().indexOf(this.titleSearched) > 0);
+    /* ... editor's choice key */
     list = this.showOnlyEditorsChoices ? list.filter(game => game.editors_choice.toUpperCase() === 'Y') : list;
+    /* ... filtered years */
+    list = this.filteredYears.length ? list.filter(game => game.release_year >= this.filteredYears[0] && game.release_year <= this.filteredYears[1]) : list;
+    /* ... filtered genres */
+    list = Object.keys(this.allGenresList).length ? list.filter(game => {
+      let hasGenre = false;
+      game.genre.split(', ').forEach(genre => {
+        if (genre.trim() === '') genre ='any';
+        hasGenre = hasGenre || this.allGenresList[genre];
+      });
+      return hasGenre;
+    }) : list;
+    /* ... filtered platforms */
+    list = Object.keys(this.allPlatformsList).length ? list.filter(game => this.allPlatformsList[game.platform]) : list;
+    /* ... filtered ratings */
+    list = list.filter(game => game.score >= this.filteredRating);
+
     return list;
   }
 
-  toggleEditorsChoiceFilter(toggle) {
+  resetPageAndUpdateList() {
     this.page = 1;
-    this.showOnlyEditorsChoices = toggle;
     this.updateGamesList();
   }
 
+  toggleEditorsChoiceFilter(toggle) {
+    this.showOnlyEditorsChoices = toggle;
+    this.resetPageAndUpdateList();
+  }
+
   searchedTitle(title) {
-    this.page = 1;
     this.titleSearched = title;
-    this.updateGamesList();
+    this.resetPageAndUpdateList();
   }
 
   displayFilter(filterKey) {
     this.filterKey = filterKey;
+  }
+
+  yearFilters(filteredYears) {
+    this.filteredYears = filteredYears;
+    this.resetPageAndUpdateList();
+  }
+
+  ratingFilters(minRating) {
+    this.filteredRating = minRating;
+    this.resetPageAndUpdateList();
   }
 }

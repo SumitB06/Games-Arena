@@ -1,0 +1,18 @@
+<div class="container-fluid p-3">
+  <div class="row form-check d-flex pb-4">
+    <div class="col-6 col-lg-4 py-2" *ngFor="let genre of genreList; let i=index">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="genre.selected">
+        <span>{{genre.name}}</span>
+      </label>
+    </div>
+  </div>
+  <div class="row form-group justify-content-around">
+    <div class="col-12 col-md-3">
+      <button type="button" class="btn btn-block btn-primary" (click)="applyFilter()">Apply</button>
+    </div>
+    <div class="col-12 col-md-3">
+      <button type="button" class="btn btn-block btn-light" (click)="applyFilter(true)">Reset</button>
+    </div>
+  </div>
+</div>

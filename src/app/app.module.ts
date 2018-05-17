@@ -11,6 +11,9 @@ import { GameDetailsViewComponent } from './game-details-view/game-details-view.
 import { StarRatingsComponent } from './star-ratings/star-ratings.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { YearRangeFilterComponent } from './year-range-filter/year-range-filter.component';
+import { PlatformFilterComponent } from './platform-filter/platform-filter.component';
+import { GenreFilterComponent } from './genre-filter/genre-filter.component';
+import { RatingFilterComponent } from './rating-filter/rating-filter.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { YearRangeFilterComponent } from './year-range-filter/year-range-filter.
     GameDetailsViewComponent,
     StarRatingsComponent,
     NavMenuComponent,
-    YearRangeFilterComponent
+    YearRangeFilterComponent,
+    PlatformFilterComponent,
+    GenreFilterComponent,
+    RatingFilterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,8 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
+  @Input() filterKey: string = '';
   @Output() displayFilter: EventEmitter<string> = new EventEmitter();
-  filterKey: string = '';
 
   constructor() { }
 

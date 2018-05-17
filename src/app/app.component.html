@@ -6,35 +6,48 @@
   </header>
 
   <nav>
-    <app-nav-menu (displayFilter)="displayFilter($event)"></app-nav-menu>
+    <app-nav-menu (displayFilter)="displayFilter($event)" [filterKey]="filterKey"></app-nav-menu>
   </nav>
 
-  <section>
-    <app-year-range-filter [filterKey]="filterKey" [releaseYearsRange]="releaseYearsRange" *ngIf="filterKey === 'year'"></app-year-range-filter>
+  <section class="filter-block" *ngIf="filterKey !== ''">
+    <app-year-range-filter (yearFilters)="yearFilters($event); filterKey = '';" *ngIf="filterKey === 'year'" [releaseYearsRange]="releaseYearsRange"></app-year-range-filter>
+
+    <app-platform-filter *ngIf="filterKey === 'platform'" [allPlatformsList]="allPlatformsList" (platformFilters)="resetPageAndUpdateList(); filterKey = '';"></app-platform-filter>
+    
+    <app-genre-filter *ngIf="filterKey === 'genre'" [allGenresList]="allGenresList" (genreFilters)="resetPageAndUpdateList(); filterKey = '';"></app-genre-filter>
+
+    <app-rating-filter *ngIf="filterKey === 'ratings'" [filteredRating]="filteredRating" (minRatings)="ratingFilters($event); filterKey = '';"></app-rating-filter>
+
+    <i class="fas fa-times-circle fa-2x" (click)="filterKey = ''"></i>
   </section>
 
-  <main class="container-fluid">
-    <div class="row" *ngIf="dataReceived">
+  <main class="container-fluid" *ngIf="dataReceived">
+    <div class="row" *ngIf="filteredResults">
       <div class="col">
-        <span class="result-count float-right">Showing {{shownPerPage}} out of {{filteredResults}} results</span>
+        <div class="result-counter mt-4 mb-2 p-1">
+          <span class="text-white font-italic">Showing {{shownPerPage > filteredResults ? filteredResults : shownPerPage}} out of {{filteredResults}} results</span>
+        </div>
       </div>
     </div>
+
     <app-container-view [gamesList]="gamesList" [loadingComplete]="dataReceived"></app-container-view>
-    <div class="row form-inline justify-content-around">
+
+    <div class="row form-inline justify-content-around" *ngIf="filteredResults">
       <div class="col-12 col-md-4">
-        <span>Show per page: </span>
-        <input type="number" [(ngModel)]="shownPerPage" (change)="updateGamesList()" class="form-control"/>
+        <span>Max items per page: </span>
+        <input type="number" [(ngModel)]="shownPerPage" (change)="setCurrentDisplayedList()" class="form-control"/>
       </div>
       <div class="col-12 col-md-4">
         <span>Displaying </span>
-        <input type="number" [(ngModel)]="page" (change)="updateGamesList()" class="form-control page-number"/>
+        <input type="number" [(ngModel)]="page" (change)="setCurrentDisplayedList()" class="form-control page-number" [min]="1" [max]="maxPages"/>
         <span> of {{maxPages}} pages</span>
       </div>
     </div>
   </main>
 </div>
-<div *ngIf="!dataReceived" class="block-layer">
-  <div class="loadingSpinner">
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-  </div>
+
+<div class="loadingSpinner" *ngIf="!dataReceived">
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
 </div>
+
+<div class="cover-layer" *ngIf="!dataReceived || filterKey !== ''"></div>

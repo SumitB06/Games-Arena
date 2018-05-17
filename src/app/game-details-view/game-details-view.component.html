@@ -14,7 +14,7 @@
       <span>Platform</span>: <span><em>{{gameDetails.platform}}</em></span>
     </div>
     <div class="col">
-      <span>Genre</span>: <span><em>{{gameDetails.genre}}</em></span>
+      <span>Genre</span>: <span><em>{{gameDetails.genre.trim() === '' ? '--' : gameDetails.genre}}</em></span>
     </div>
     <div class="col">
       <span>Release year</span>: <span><em>{{gameDetails.release_year}}</em></span>

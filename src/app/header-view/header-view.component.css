@@ -18,3 +18,8 @@ i {
 i:hover {
     opacity: 0.9;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

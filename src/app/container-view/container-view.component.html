@@ -3,5 +3,8 @@
     <li *ngFor="let gameData of gamesList">
       <app-game-details-view [gameDetails]="gameData"></app-game-details-view>
     </li>
+    <li *ngIf="!gamesList.length" class="text-center">
+      <span>No records matching criteria!</span>
+    </li>
   </ul>
 </div>
