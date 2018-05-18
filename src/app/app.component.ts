@@ -34,7 +34,7 @@ export class AppComponent {
       this.allGamesList = res.json();
       this.updateGamesList();
       
-      this.releaseYearsRange = this.filteredYears;
+      this.releaseYearsRange = [].concat(this.filteredYears);
       this.allGamesList.forEach(game => {
         /* get unique genres list */
         game.genre.split(', ').forEach(element => {
@@ -126,11 +126,6 @@ export class AppComponent {
 
   displayFilter(filterKey) {
     this.filterKey = filterKey;
-  }
-
-  yearFilters(filteredYears) {
-    this.filteredYears = filteredYears;
-    this.resetPageAndUpdateList();
   }
 
   ratingFilters(minRating) {

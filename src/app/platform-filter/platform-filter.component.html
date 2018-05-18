@@ -1,8 +1,8 @@
 <div class="container-fluid p-3">
-  <div class="row form-check d-flex pb-4">
+  <div class="row d-flex pb-4">
     <div class="col-6 col-lg-4 py-2" *ngFor="let platform of platformList; let i=index">
-      <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" [(ngModel)]="platform.selected">
+      <input type="checkbox" [(ngModel)]="platform.selected">
+      <label class="custom-labels mb-0" (click)="platform.selected = !platform.selected">
         <span>{{platform.name}}</span>
       </label>
     </div>

@@ -10,7 +10,7 @@
   </nav>
 
   <section class="filter-block" *ngIf="filterKey !== ''">
-    <app-year-range-filter (yearFilters)="yearFilters($event); filterKey = '';" *ngIf="filterKey === 'year'" [releaseYearsRange]="releaseYearsRange"></app-year-range-filter>
+    <app-year-range-filter (yearFilters)="resetPageAndUpdateList(); filterKey = '';" *ngIf="filterKey === 'year'" [releaseYearsRange]="releaseYearsRange" [yearInputs]="filteredYears"></app-year-range-filter>
 
     <app-platform-filter *ngIf="filterKey === 'platform'" [allPlatformsList]="allPlatformsList" (platformFilters)="resetPageAndUpdateList(); filterKey = '';"></app-platform-filter>
     

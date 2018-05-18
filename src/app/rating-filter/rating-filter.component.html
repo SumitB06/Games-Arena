@@ -3,7 +3,7 @@
     <div class="col-12 py-2 text-center">
       <span>Min rating: </span>
       <span>
-        <i *ngFor="let star of starArray;let i = index" class={{star}} (click)="onStarClicked(i+1)" (mouseenter)="setStars(10)" (mouseleave)="setStars()"></i>
+        <i *ngFor="let star of starArray; let i = index;" class={{star}} (click)="onStarClicked(i+1)" (mouseenter)="setStars(10)" (mouseleave)="setStars()"></i>
       </span>
     </div>
   </div>

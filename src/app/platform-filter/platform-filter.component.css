@@ -1,0 +1,27 @@
+input[type=checkbox] {
+    display: none;
+}
+
+.custom-labels {
+    cursor: pointer;
+    width: 100%;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 2px;
+    color: #fff;
+}
+
+.custom-labels:hover {
+    box-shadow: 0 0 5px 1px;
+}
+
+input:checked + .custom-labels {
+    background: linear-gradient(#ddd, #bbb, #ccc, #eee);
+    color: darkslategray;
+    border: none;
+    box-shadow: 0 2px 2px;
+}
+
+input:checked + .custom-labels:hover {
+    background: linear-gradient(#bbb, #999, #ccc);
+}

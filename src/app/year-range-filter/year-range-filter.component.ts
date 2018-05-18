@@ -8,18 +8,20 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class YearRangeFilterComponent implements OnInit {
 
   @Input() releaseYearsRange: number[];
-  @Output() yearFilters: EventEmitter<number[]> = new EventEmitter();
+  @Input() yearInputs: number[];
+  @Output() yearFilters: EventEmitter<any> = new EventEmitter();
 
-  yearInputs: number[] = [];
 
   constructor() { }
 
   ngOnInit() {
-    this.yearInputs = this.releaseYearsRange;
   }
 
   applyFilter(reset: boolean = false) {
-    if (reset) this.yearInputs = this.releaseYearsRange;
-    this.yearFilters.emit([this.yearInputs[0], this.yearInputs[1]]);
+    if (reset) {
+      this.yearInputs[0] = this.releaseYearsRange[0];
+      this.yearInputs[1] = this.releaseYearsRange[1]
+    }
+    this.yearFilters.emit();
   }
 }
