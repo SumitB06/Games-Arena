@@ -1,0 +1,13 @@
+.selected {
+    background-color: #aaa;
+    box-shadow: inset 0px 0px 5px 1px #666;
+}
+
+div.d-inline-block {
+    min-width: 45px;
+    cursor: pointer;
+}
+
+div.d-inline-block:hover {
+    background-color: #888;
+} 

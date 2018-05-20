@@ -14,6 +14,7 @@ import { YearRangeFilterComponent } from './year-range-filter/year-range-filter.
 import { PlatformFilterComponent } from './platform-filter/platform-filter.component';
 import { GenreFilterComponent } from './genre-filter/genre-filter.component';
 import { RatingFilterComponent } from './rating-filter/rating-filter.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { RatingFilterComponent } from './rating-filter/rating-filter.component';
     YearRangeFilterComponent,
     PlatformFilterComponent,
     GenreFilterComponent,
-    RatingFilterComponent
+    RatingFilterComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

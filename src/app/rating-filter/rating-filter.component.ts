@@ -24,9 +24,9 @@ export class RatingFilterComponent implements OnInit {
     this.starArray = [];
     while(i <= 10) {
       if (i <= minRating) {
-        this.starArray.push('fas fa-star pl-2');
+        this.starArray.push('fas fa-star px-1');
       } else {
-        this.starArray.push('far fa-star pl-2');
+        this.starArray.push('far fa-star px-1');
       }
       i++;
     }

@@ -132,4 +132,9 @@ export class AppComponent {
     this.filteredRating = minRating;
     this.resetPageAndUpdateList();
   }
+
+  changePage(page) {
+    this.page = page;
+    this.setCurrentDisplayedList();
+  }
 }

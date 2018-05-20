@@ -22,27 +22,25 @@
   </section>
 
   <main class="container-fluid" *ngIf="dataReceived">
-    <div class="row" *ngIf="filteredResults">
+    <!-- <div class="row form-inline justify-content-around mb-2" *ngIf="filteredResults">
+      
+    </div> -->
+    <div class="row mt-4 mb-2" *ngIf="filteredResults">
       <div class="col">
-        <div class="result-counter mt-4 mb-2 p-1">
-          <span class="text-white font-italic">Showing {{shownPerPage > filteredResults ? filteredResults : shownPerPage}} out of {{filteredResults}} results</span>
+        <div class="result-counter p-1">
+          <span class="text-white font-italic">Showing {{gamesList.length}} out of {{filteredResults}} results</span>
         </div>
       </div>
+      <div class="col-4 text-right">
+          <span>Items per page: </span>
+          <input type="number" [(ngModel)]="shownPerPage" (change)="setCurrentDisplayedList()" class="form-control d-inline"/>
+        </div>
     </div>
 
     <app-container-view [gamesList]="gamesList" [loadingComplete]="dataReceived"></app-container-view>
 
-    <div class="row form-inline justify-content-around" *ngIf="filteredResults">
-      <div class="col-12 col-md-4">
-        <span>Max items per page: </span>
-        <input type="number" [(ngModel)]="shownPerPage" (change)="setCurrentDisplayedList()" class="form-control"/>
-      </div>
-      <div class="col-12 col-md-4">
-        <span>Displaying </span>
-        <input type="number" [(ngModel)]="page" (change)="setCurrentDisplayedList()" class="form-control page-number" [min]="1" [max]="maxPages"/>
-        <span> of {{maxPages}} pages</span>
-      </div>
-    </div>
+    <app-paginator [currentPage]="page" [totalPages]="maxPages" (changePage)="changePage($event)"></app-paginator>
+    
   </main>
 </div>
 
