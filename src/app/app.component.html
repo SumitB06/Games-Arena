@@ -1,7 +1,7 @@
 <div>
   <header>
     <app-header-view (toggleEditorsChoiceFilter)="toggleEditorsChoiceFilter($event)"
-      (searchedTitle)="searchedTitle($event)"
+      (searchedTitle)="searchedTitle($event)" [showOnlyEditorsChoices]="showOnlyEditorsChoices"
     ></app-header-view>
   </header>
 
@@ -29,6 +29,7 @@
       <div class="col">
         <div class="result-counter p-1">
           <span class="text-white font-italic">Showing {{gamesList.length}} out of {{filteredResults}} results</span>
+          <span class="ml-1" *ngIf="filteredResults < allGamesList.length"><a (click)="resetFilters()">Remove all filters</a></span>
         </div>
       </div>
       <div class="col-4 text-right">

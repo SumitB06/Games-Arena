@@ -59,3 +59,14 @@ i.fa-times-circle {
     text-align: center;
     border-radius: 20px;
 }
+
+span > a {
+    text-decoration: underline;
+    color: #aaa;
+    cursor: pointer;
+}
+
+span > a:hover {
+    color: #ddd;
+    text-decoration: underline;
+}

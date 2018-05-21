@@ -137,4 +137,15 @@ export class AppComponent {
     this.page = page;
     this.setCurrentDisplayedList();
   }
+
+  resetFilters() {
+    this.showOnlyEditorsChoices = false;
+    this.titleSearched = '';
+    Object.keys(this.allGenresList).forEach(item => this.allGenresList[item] = true);
+    Object.keys(this.allPlatformsList).forEach(item => this.allPlatformsList[item] = true);
+    this.filteredYears = [].concat(this.releaseYearsRange);
+    this.filteredRating = 0;
+    this.resetPageAndUpdateList();
+  }
+  
 }

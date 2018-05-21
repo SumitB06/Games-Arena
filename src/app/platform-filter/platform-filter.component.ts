@@ -22,9 +22,9 @@ export class PlatformFilterComponent implements OnInit {
   }
 
   applyFilter(reset?: boolean) {
-    if (isBoolean(reset)) this.platformList.forEach(item => item.selected = true);
+    if (isBoolean(reset)) this.platformList.forEach(item => item.selected = reset);
     this.platformList.forEach(item => this.allPlatformsList[item.name] = item.selected);
-    this.platformFilters.emit();
+    if (reset !== false) this.platformFilters.emit();
   }
 
 }

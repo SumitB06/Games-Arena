@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header-view',
@@ -7,10 +7,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderViewComponent implements OnInit {
 
+  @Input() showOnlyEditorsChoices: boolean = false;
   @Output() toggleEditorsChoiceFilter: EventEmitter<boolean> = new EventEmitter();
   @Output() searchedTitle: EventEmitter<string> = new EventEmitter();
 
-  showOnlyEditorsChoices: boolean = false;
   constructor() { }
 
   ngOnInit() {

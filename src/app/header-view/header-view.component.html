@@ -8,7 +8,7 @@
         <input type="text" #searchedTitle (keyup.enter)="filterByTitle(searchedTitle.value)" class="form-control"
           placeholder="Search for game title"
         />
-        <i class="fas fa-times-circle" *ngIf="searchedTitle.value.length"></i>
+        <i class="fas fa-times-circle" *ngIf="searchedTitle.value.length" (click)="searchedTitle.value='';filterByTitle(searchedTitle.value);"></i>
       </div>
       <div class="col-4 col-md-3">
         <button type="button" class="btn btn-block" [ngClass]="{ 'btn-success': showOnlyEditorsChoices, 'btn-secondary': !showOnlyEditorsChoices }" (click)="toggleEditorChoiceDisplay()">

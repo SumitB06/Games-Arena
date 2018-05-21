@@ -22,8 +22,8 @@ export class GenreFilterComponent implements OnInit {
   }
 
   applyFilter(reset?: boolean) {
-    if (isBoolean(reset)) this.genreList.forEach(item => item.selected = true);
+    if (isBoolean(reset)) this.genreList.forEach(item => item.selected = reset);
     this.genreList.forEach(item => this.allGenresList[item.name] = item.selected);
-    this.genreFilters.emit();
+    if (reset !== false) this.genreFilters.emit();
   }
 }
