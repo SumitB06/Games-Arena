@@ -3,6 +3,8 @@ div.col-6.col-md-3 {
     padding-bottom: 8px;
     text-align: center;
     border-right: 1px solid #555;
+    background: linear-gradient(#555, #444, #555);
+    color: #aaa;
     cursor: pointer;
 }
 

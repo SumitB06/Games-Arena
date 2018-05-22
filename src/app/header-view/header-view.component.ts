@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class HeaderViewComponent implements OnInit {
 
   @Input() showOnlyEditorsChoices: boolean = false;
+  @Input() titleSearched: string = '';
   @Output() toggleEditorsChoiceFilter: EventEmitter<boolean> = new EventEmitter();
   @Output() searchedTitle: EventEmitter<string> = new EventEmitter();
 

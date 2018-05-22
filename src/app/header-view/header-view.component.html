@@ -2,16 +2,18 @@
   <div class="container-fluid">
     <div class="row form-group mb-0">
       <div class="col-12 col-md-4">
-        <h2><a href="">Games Arena</a></h2>
+        <h2>
+          <a href="">Games Arena</a>
+        </h2>
       </div>
       <div class="col-8 col-md-5">
-        <input type="text" #searchedTitle (keyup.enter)="filterByTitle(searchedTitle.value)" class="form-control"
-          placeholder="Search for game title"
-        />
+        <input type="text" #searchedTitle (keyup.enter)="filterByTitle(searchedTitle.value)" class="form-control" placeholder="Search for game title"
+          [(ngModel)]="titleSearched" />
         <i class="fas fa-times-circle" *ngIf="searchedTitle.value.length" (click)="searchedTitle.value='';filterByTitle(searchedTitle.value);"></i>
       </div>
       <div class="col-4 col-md-3">
-        <button type="button" class="btn btn-block" [ngClass]="{ 'btn-success': showOnlyEditorsChoices, 'btn-secondary': !showOnlyEditorsChoices }" (click)="toggleEditorChoiceDisplay()">
+        <button type="button" class="btn btn-block" [ngClass]="{ 'btn-success': showOnlyEditorsChoices, 'btn-secondary': !showOnlyEditorsChoices }"
+          (click)="toggleEditorChoiceDisplay()">
           Editor's Choices
         </button>
       </div>

@@ -1,8 +1,7 @@
 <div>
   <header>
-    <app-header-view (toggleEditorsChoiceFilter)="toggleEditorsChoiceFilter($event)"
-      (searchedTitle)="searchedTitle($event)" [showOnlyEditorsChoices]="showOnlyEditorsChoices"
-    ></app-header-view>
+    <app-header-view (toggleEditorsChoiceFilter)="toggleEditorsChoiceFilter($event)" (searchedTitle)="searchedTitle($event)"
+      [titleSearched]="titleSearched" [showOnlyEditorsChoices]="showOnlyEditorsChoices"></app-header-view>
   </header>
 
   <nav>
@@ -10,38 +9,40 @@
   </nav>
 
   <section class="filter-block" *ngIf="filterKey !== ''">
-    <app-year-range-filter (yearFilters)="resetPageAndUpdateList(); filterKey = '';" *ngIf="filterKey === 'year'" [releaseYearsRange]="releaseYearsRange" [yearInputs]="filteredYears"></app-year-range-filter>
+    <app-year-range-filter (yearFilters)="resetPageAndUpdateList(); filterKey = '';" [releaseYearsRange]="releaseYearsRange"
+      [yearInputs]="filteredYears" *ngIf="filterKey === 'year'"></app-year-range-filter>
 
-    <app-platform-filter *ngIf="filterKey === 'platform'" [allPlatformsList]="allPlatformsList" (platformFilters)="resetPageAndUpdateList(); filterKey = '';"></app-platform-filter>
-    
-    <app-genre-filter *ngIf="filterKey === 'genre'" [allGenresList]="allGenresList" (genreFilters)="resetPageAndUpdateList(); filterKey = '';"></app-genre-filter>
+    <app-platform-filter [allPlatformsList]="allPlatformsList" (platformFilters)="resetPageAndUpdateList(); filterKey = '';"
+      *ngIf="filterKey === 'platform'"></app-platform-filter>
 
-    <app-rating-filter *ngIf="filterKey === 'ratings'" [filteredRating]="filteredRating" (minRatings)="ratingFilters($event); filterKey = '';"></app-rating-filter>
+    <app-genre-filter [allGenresList]="allGenresList" (genreFilters)="resetPageAndUpdateList(); filterKey = '';" *ngIf="filterKey === 'genre'"></app-genre-filter>
+
+    <app-rating-filter [filteredRating]="filteredRating" (minRatings)="ratingFilters($event); filterKey = '';" *ngIf="filterKey === 'ratings'"></app-rating-filter>
 
     <i class="fas fa-times-circle fa-2x" (click)="filterKey = ''"></i>
   </section>
 
   <main class="container-fluid" *ngIf="dataReceived">
-    <!-- <div class="row form-inline justify-content-around mb-2" *ngIf="filteredResults">
-      
-    </div> -->
-    <div class="row mt-4 mb-2" *ngIf="filteredResults">
+    <!-- <div class="row form-inline justify-content-around mb-2" *ngIf="filteredResults"></div> -->
+    <div class="row mt-4 mb-2">
       <div class="col">
         <div class="result-counter p-1">
-          <span class="text-white font-italic">Showing {{gamesList.length}} out of {{filteredResults}} results</span>
-          <span class="ml-1" *ngIf="filteredResults < allGamesList.length"><a (click)="resetFilters()">Remove all filters</a></span>
+          <span class="text-white font-italic" *ngIf="filteredResults">Showing {{gamesList.length}} out of {{filteredResults}} results</span>
+          <span class="ml-1" *ngIf="filteredResults < allGamesList.length">
+            <a (click)="resetFilters()">Remove all filters</a>
+          </span>
         </div>
       </div>
-      <div class="col-4 text-right">
-          <span>Items per page: </span>
-          <input type="number" [(ngModel)]="shownPerPage" (change)="setCurrentDisplayedList()" class="form-control d-inline"/>
-        </div>
+      <div class="col-4 text-right" *ngIf="filteredResults">
+        <span>Items per page: </span>
+        <input type="number" [(ngModel)]="shownPerPage" (change)="setCurrentDisplayedList()" class="form-control d-inline" />
+      </div>
     </div>
 
     <app-container-view [gamesList]="gamesList" [loadingComplete]="dataReceived"></app-container-view>
 
     <app-paginator [currentPage]="page" [totalPages]="maxPages" (changePage)="changePage($event)"></app-paginator>
-    
+
   </main>
 </div>
 

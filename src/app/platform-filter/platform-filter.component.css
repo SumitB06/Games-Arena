@@ -8,7 +8,7 @@ input[type=checkbox] {
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 0 2px;
-    color: #fff;
+    color: #444;
 }
 
 .custom-labels:hover {
@@ -16,12 +16,12 @@ input[type=checkbox] {
 }
 
 input:checked + .custom-labels {
-    background: linear-gradient(#ddd, #bbb, #ccc, #eee);
+    background: linear-gradient(#aaa, #999, #777);
     color: darkslategray;
     border: none;
-    box-shadow: 0 2px 2px;
+    box-shadow: 0 2px 2px #555;
 }
 
 input:checked + .custom-labels:hover {
-    background: linear-gradient(#bbb, #999, #ccc);
+    background: linear-gradient(#bbb, #aaa, #999);
 }

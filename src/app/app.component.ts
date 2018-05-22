@@ -87,7 +87,7 @@ export class AppComponent {
   /* Filter list based on ... */
   getFilteredList() {
     /* ... searched title */ 
-    let list = this.titleSearched.trim() === '' ? this.allGamesList : this.allGamesList.filter(game => game.title.toString().indexOf(this.titleSearched) > 0);
+    let list = this.titleSearched.trim() === '' ? this.allGamesList : this.allGamesList.filter(game => game.title.toString().toLowerCase().indexOf(this.titleSearched.toLowerCase()) > 0);
     /* ... editor's choice key */
     list = this.showOnlyEditorsChoices ? list.filter(game => game.editors_choice.toUpperCase() === 'Y') : list;
     /* ... filtered years */
